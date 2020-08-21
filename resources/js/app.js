@@ -1,9 +1,16 @@
 require('./bootstrap');
+import BootstrapVue from 'bootstrap-vue';
+import store from './store/index'
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
 window.Vue = require('vue');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('develop-simulator', require('./components/pages/DevelopSimulator.vue').default);
+Vue.use(BootstrapVue);
+Vue.use(Vuetify);
 
 const app = new Vue({
-    el: '#app'
-});
+    store,
+    vuetify: new Vuetify(),
+}).$mount('#app');
