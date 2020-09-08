@@ -26,7 +26,6 @@ Route::get('/ping', PingAction::class);
 // character
 Route::get('/rarity', GetRarityListAction::class);
 Route::get('/job', GetJobListAction::class);
-
 // Route::get('/develop', GetDevelopListAction::class);
 // Route::get('/character', GetCharacterListAction::class);
 // Route::post('/character/search', FindCharacterListAction::class);

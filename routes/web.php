@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('develop_simulator');
-});
+Route::get('/{any}', function () {
+    return view('index');
+})->where('any', '.*');

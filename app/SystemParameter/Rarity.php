@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\SystemParameter;
+namespace App\SystemParameter;
 
 class Rarity
 {

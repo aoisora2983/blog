@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblStageMaterialTable extends Migration
+class CreateMstLevelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateTblStageMaterialTable extends Migration
     public function up()
     {
         Schema::create('mst_level', function (Blueprint $table) {
-            $table->increment('id');
+            $table->increments('id');
             $table->integer('level_kind');
             $table->integer('required_experience');
             $table->integer('required_money');
@@ -30,6 +30,6 @@ class CreateTblStageMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_stage_material');
+        Schema::dropIfExists('mst_level');
     }
 }

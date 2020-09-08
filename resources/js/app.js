@@ -1,4 +1,6 @@
 require('./bootstrap');
+import Vue from 'vue'
+import router from './router'
 import BootstrapVue from 'bootstrap-vue';
 import store from './store/index'
 import Vuetify from 'vuetify';
@@ -7,15 +9,17 @@ import '@mdi/font/css/materialdesignicons.css'
 
 window.Vue = require('vue');
 
-Vue.component('develop-simulator', require('./components/pages/DevelopSimulator.vue').default);
+Vue.component('index', require('./components/pages/Index.vue').default);
 Vue.use(BootstrapVue);
 Vue.use(Vuetify);
 
-const app = new Vue({
+new Vue({
+    el: '#app',
+    router: router,
     store,
     vuetify: new Vuetify({
         icons: {
             iconfont: 'mdi',
         },
     }),
-}).$mount('#app');
+});

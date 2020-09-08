@@ -4,7 +4,7 @@ namespace App\Http\Action\Character;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\SystemParameter\Job;
+use App\SystemParameter\Job;
 
 class GetJobListAction
 {
