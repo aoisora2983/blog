@@ -48,9 +48,11 @@
       <v-autocomplete
         v-model="model"
         :hint="'hint text'"
-        :items="states"
+        :items="characterSearch"
         :label="`Please Input or Select`"
         persistent-hint
+        item-text="name"
+        item-value="id"
         prepend-icon="mdi-magnify"
       >
         <template v-slot:append-outer>
@@ -69,9 +71,9 @@
         >
           <v-list-item>
             <v-list-item-content>
-              <div class="overline mb-4">Rarity</div>
-              <v-list-item-title class="headline mb-1">CharacterName</v-list-item-title>
-              <v-list-item-subtitle>CharacterJob</v-list-item-subtitle>
+              <div class="overline mb-4">{{ characterRarity }}</div>
+              <v-list-item-title class="headline mb-1">{{ characterName }}</v-list-item-title>
+              <v-list-item-subtitle>{{ characterJob }}</v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-avatar
@@ -81,9 +83,6 @@
             ></v-list-item-avatar>
           </v-list-item>
 
-          <v-card-actions>
-            <v-btn text>Add</v-btn>
-          </v-card-actions>
         </v-card>
       </div>
 
@@ -98,8 +97,10 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="promotion"
                 label="Promotion"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -109,7 +110,6 @@
               md="4"
             >            
               <v-text-field
-                v-model="name"
                 label="Lv"
                 required
                 dense
@@ -122,7 +122,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill1"
                 label="Skill 1"
                 required
                 dense
@@ -133,7 +133,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill2"
                 label="Skill 2"
                 required
                 dense
@@ -144,7 +144,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill3"
                 label="Skill 3"
                 required
                 dense
@@ -167,7 +167,9 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="promotion"
+                item-text="name"
+                item-value="id"
                 label="Promotion"
                 required
                 dense
@@ -178,7 +180,6 @@
               md="4"
             >            
               <v-text-field
-                v-model="name"
                 label="Lv"
                 required
                 dense
@@ -191,7 +192,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill1"
                 label="Skill 1"
                 required
                 dense
@@ -202,7 +203,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill2"
                 label="Skill 2"
                 required
                 dense
@@ -213,7 +214,7 @@
               md="4"
             >
               <v-select
-                :items="items"
+                :items="skill3"
                 label="Skill 3"
                 required
                 dense
@@ -310,11 +311,11 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
     
     export default {
         mounted() {
-            console.log(this.$store);
+            console.log(this.$store.state.name);
         },
 
         methods: {
@@ -330,32 +331,27 @@
           drawer: false,
           group: null,
           model: null,
-          // autocomplete
-          states: [
-            'Alabama', 'Alaska', 'American Samoa', 'Arizona',
-            'Arkansas', 'California', 'Colorado', 'Connecticut',
-            'Delaware', 'District of Columbia', 'Federated States of Micronesia',
-            'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
-            'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-            'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
-            'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-            'Missouri', 'Montana', 'Nebraska', 'Nevada',
-            'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-            'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
-            'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
-            'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-            'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
-            'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
-          ],
-          // selectbox
           valid: false,
-          items: [
-            'hoge',
-            'fuga'
-          ],
-          // lvBox
-          name: 1,
         }),
+
+        computed: {
+          // autocomplete
+          ...mapState('search', {
+            characterSearch: 'list',
+          }),
+          ...mapState('character', {
+            characterName: 'name',
+            characterJob: 'job',
+            characterRarity: 'rarity',
+          }),
+          // selectbox
+          ...mapState('develop', {
+            promotion: 'promotion',
+            skill1: 'skill1',
+            skill2: 'skill2',
+            skill3: 'skill3',
+          }),
+        },
 
         watch: {
           group () {
