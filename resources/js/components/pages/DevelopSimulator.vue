@@ -124,6 +124,8 @@
               <v-select
                 :items="skill1"
                 label="Skill 1"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -135,6 +137,8 @@
               <v-select
                 :items="skill2"
                 label="Skill 2"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -146,6 +150,8 @@
               <v-select
                 :items="skill3"
                 label="Skill 3"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -194,6 +200,8 @@
               <v-select
                 :items="skill1"
                 label="Skill 1"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -205,6 +213,8 @@
               <v-select
                 :items="skill2"
                 label="Skill 2"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -216,6 +226,8 @@
               <v-select
                 :items="skill3"
                 label="Skill 3"
+                item-text="name"
+                item-value="id"
                 required
                 dense
               ></v-select>  
@@ -238,7 +250,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="material in materials" :key="material.id">
+            <tr v-for="(material, index) in materials" :key="material.id">
               <td>{{ material.name }}</td>
               <td>
                 <v-text-field
@@ -246,8 +258,8 @@
                   :append-outer-icon="'mdi-plus'"
                   v-model="material.required"
                   type="number"
-                  @click:append-outer="plusMaterial"
-                  @click:prepend="minusMaterial"
+                  @click:append-outer="materialIncrement(index)"
+                  @click:prepend="materialDecrement(index)"
                 ></v-text-field>
               </td>
             </tr>
@@ -287,16 +299,14 @@
     
     export default {
         mounted() {
-            console.log(this.$store.state.name);
+            console.log(this.$store);
         },
 
         methods: {
-          plusMaterial () {
-
-          },
-          minusMaterial () {
-
-          }
+          ...mapActions('resource', {
+            materialIncrement: 'increment',
+            materialDecrement: 'decrement'
+          }),
         },
         
         data: () => ({

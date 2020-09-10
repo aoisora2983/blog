@@ -5,15 +5,59 @@ const state = {
 		{ id: 3, name: '昇進II' }
 	],
 	level: 1,
-	skill1: [1, 2, 3, 4, 5, 6, 7, '特化1', '特化2', '特化3'],
-	skill2: [1, 2, 3, 4, 5, 6, 7, '特化1', '特化2', '特化3'],
-	skill3: [1, 2, 3, 4, 5, 6, 7, '特化1', '特化2', '特化3'],
+	skill1: [
+		{ id: 1, name: '1' },
+		{ id: 2, name: '2' },
+		{ id: 3, name: '3' },
+		{ id: 4, name: '4' },
+		{ id: 5, name: '5' },
+		{ id: 6, name: '6' },
+		{ id: 7, name: '7' },
+		{ id: 8, name: '特化1' },
+		{ id: 9, name: '特化2' },
+		{ id: 10, name: '特化3' },
+	],
+	skill2: [
+		{ id: 1, name: '1' },
+		{ id: 2, name: '2' },
+		{ id: 3, name: '3' },
+		{ id: 4, name: '4' },
+		{ id: 5, name: '5' },
+		{ id: 6, name: '6' },
+		{ id: 7, name: '7' },
+		{ id: 8, name: '特化1' },
+		{ id: 9, name: '特化2' },
+		{ id: 10, name: '特化3' },
+	],
+	skill3: [
+		{ id: 1, name: '1' },
+		{ id: 2, name: '2' },
+		{ id: 3, name: '3' },
+		{ id: 4, name: '4' },
+		{ id: 5, name: '5' },
+		{ id: 6, name: '6' },
+		{ id: 7, name: '7' },
+		{ id: 8, name: '特化1' },
+		{ id: 9, name: '特化2' },
+		{ id: 10, name: '特化3' },
+	],
+	now: {
+		nowPromotion: null,
+		nowLevel: null,
+		nowSkill1: null,
+		nowSkill2: null,
+		nowSkill3: null,
+	},
+	goal: {
+		goalPromotion: null,
+		goalLevel: null,
+		goalSkill1: null,
+		goalSkill2: null,
+		goalSkill3: null,
+	},
 };
 
 const mutations = {
-	setName(state, { promotion }) {
-		state.promotion = promotion;
-	}
 };
 
 export default {
