@@ -1,21 +1,24 @@
 const state = {
-	material: [
+	materials: [
 		{
 			id: 1,
 			name: 'stone',
 			img: '',
 			required: 7000,
+		},
+		{
+			id: 2,
+			name: 'suger',
+			img: '',
+			required: 12,
 		}
 	]
 };
 
 const mutations = {
-	increment(state, { characterName }) {
-
+	increment(state, { required }) {
+		state.required++;
 	},
-	setName(state, { characterName }) {
-		state.characterName = characterName;
-	}
 };
 
 export default {

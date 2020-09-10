@@ -238,26 +238,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Stone</td>
+            <tr v-for="material in materials" :key="material.id">
+              <td>{{ material.name }}</td>
               <td>
                 <v-text-field
                   :prepend-icon="'mdi-minus'"
                   :append-outer-icon="'mdi-plus'"
-                  value="7000"
-                  type="number"
-                  @click:append-outer="plusMaterial"
-                  @click:prepend="minusMaterial"
-                ></v-text-field>
-              </td>
-            </tr>
-            <tr>
-              <td>Suger</td>
-              <td>
-                <v-text-field
-                  :prepend-icon="'mdi-minus'"
-                  :append-outer-icon="'mdi-plus'"
-                  value="12"
+                  v-model="material.required"
                   type="number"
                   @click:append-outer="plusMaterial"
                   @click:prepend="minusMaterial"
@@ -282,25 +269,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1-7</td>
-              <td>
-                7000
-              </td>
-              <td>
-                42000
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>Stage Name</td>
-              <td>
-                6
-              </td>
-              <td>
-                42
-              </td>
+            <tr v-for="stage in stages" :key="stage.id">
+              <td>{{ stage.name }}</td>
+              <td>{{ stage.required }}</td>
+              <td>{{ stage.stamina}}</td>
             </tr>
           </tbody>
         </template>
@@ -335,22 +307,31 @@
         }),
 
         computed: {
-          // autocomplete
+          // search
           ...mapState('search', {
             characterSearch: 'list',
           }),
+          // chara
           ...mapState('character', {
             characterName: 'name',
             characterJob: 'job',
             characterRarity: 'rarity',
           }),
-          // selectbox
+          // now - goal
           ...mapState('develop', {
             promotion: 'promotion',
             skill1: 'skill1',
             skill2: 'skill2',
             skill3: 'skill3',
           }),
+          // resource
+          ...mapState('resource', {
+            materials: 'materials'
+          }),
+          // stage
+          ...mapState('stage', {
+            stages: 'stages'
+          })
         },
 
         watch: {
