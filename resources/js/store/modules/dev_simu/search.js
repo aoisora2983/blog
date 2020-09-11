@@ -1,18 +1,37 @@
+import Axios from "axios";
+
 const state = {
-	list: [
-		{ id: 1, name: 'Silver Ash' },
-		{ id: 2, name: 'Cliff Heart' }
-	]
+	list: [],
+	activeId: null
 };
 
 const mutations = {
-	setName(state, { list }) {
+	setData(state, list) {
 		state.list = list;
 	}
 };
 
+const actions = {
+	getCharacterList(store) {
+		Axios.get('/api/character')
+			.then(res => {
+				store.commit('setData', res.data);
+			}).catch(error => {
+				console.log('[Error]' + error);
+			});
+	}
+};
+
+const getters = {
+	getList(state) {
+		return state.list;
+	}
+}
+
 export default {
 	namespaced: true,
 	state,
-	mutations
+	mutations,
+	actions,
+	getters
 };

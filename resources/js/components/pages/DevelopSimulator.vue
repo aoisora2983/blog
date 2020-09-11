@@ -299,13 +299,16 @@
     
     export default {
         mounted() {
-            console.log(this.$store);
+            this.getCharacterList();
         },
 
         methods: {
           ...mapActions('resource', {
             materialIncrement: 'increment',
             materialDecrement: 'decrement'
+          }),
+          ...mapActions('search', {
+            getCharacterList: 'getCharacterList',
           }),
         },
         
@@ -341,7 +344,7 @@
           // stage
           ...mapState('stage', {
             stages: 'stages'
-          })
+          }),
         },
 
         watch: {
