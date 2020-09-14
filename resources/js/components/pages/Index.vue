@@ -1,48 +1,6 @@
 <template>
   <v-app id="inspire">
-    <div>
-      <v-app-bar
-        color="accent-4"
-        dense
-        dark
-      >
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <v-toolbar-title>Page title</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-        
-      </v-app-bar>
-    </div>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-          active-class="text--accent-4"
-        >
-          <v-list-item>
-            <v-list-item-title>Open Simulator</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Reverse Open Simulator</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Dev Simulator</v-list-item-title>
-          </v-list-item>
-
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
+    <NavBar />
 
     <v-card
       max-width="1000"
@@ -88,8 +46,12 @@
 
 <script>
     import { mapActions } from 'vuex';
-    
+
+    import NavBar from '../organisms/NavBar'
+
     export default {
+      components: { NavBar },
+
       data: () => ({
         drawer: false,
         group: null,  

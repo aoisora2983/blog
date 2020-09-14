@@ -1,48 +1,6 @@
 <template>
   <v-app id="inspire">
-    <div>
-      <v-app-bar
-        color="accent-4"
-        dense
-        dark
-      >
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <v-toolbar-title>Page title</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-        
-      </v-app-bar>
-    </div>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-          active-class="text--accent-4"
-        >
-          <v-list-item>
-            <v-list-item-title>Open Simulator</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Reverse Open Simulator</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Dev Simulator</v-list-item-title>
-          </v-list-item>
-
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
+    <NavBar />
 
     <div id="contents">
       <v-autocomplete
@@ -87,154 +45,18 @@
       </div>
 
       <h2>Now</h2>
-      <v-form v-model="valid">
-        <v-container>
-          <v-row
-            dense
-          >
-            <v-col
-              cols="6"
-              md="4"
-            >
-              <v-select
-                :items="promotion"
-                label="Promotion"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="6"
-              md="4"
-            >            
-              <v-text-field
-                label="Lv"
-                required
-                dense
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row dense>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill1"
-                label="Skill 1"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill2"
-                label="Skill 2"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill3"
-                label="Skill 3"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-form>
+      <SimulateFormGroup
+        :promotion="promotion"
+        :skill="skill"
+      />
 
       <v-divider></v-divider>
 
       <h2>Goal</h2>
-      <v-form v-model="valid">
-        <v-container>
-          <v-row
-            dense
-          >
-            <v-col
-              cols="6"
-              md="4"
-            >
-              <v-select
-                :items="promotion"
-                item-text="name"
-                item-value="id"
-                label="Promotion"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="6"
-              md="4"
-            >            
-              <v-text-field
-                label="Lv"
-                required
-                dense
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row dense>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill1"
-                label="Skill 1"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill2"
-                label="Skill 2"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-            <v-col
-              cols="4"
-              md="4"
-            >
-              <v-select
-                :items="skill3"
-                label="Skill 3"
-                item-text="name"
-                item-value="id"
-                required
-                dense
-              ></v-select>  
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-form>
+      <SimulateFormGroup
+        :promotion="promotion"
+        :skill="skill"
+      />
 
       <v-btn block color="primary" dark>Simulate</v-btn>
 
@@ -297,7 +119,12 @@
 <script>
     import { mapState, mapActions } from 'vuex';
     
+    import NavBar from '../organisms/NavBar'
+    import SimulateFormGroup from '../organisms/SimulateFormGroup'
+
     export default {
+        components: { NavBar, SimulateFormGroup },
+
         mounted() {
             this.getCharacterList();
         },
@@ -313,10 +140,7 @@
         },
         
         data: () => ({
-          drawer: false,
-          group: null,
           model: null,
-          valid: false,
         }),
 
         computed: {
@@ -333,9 +157,7 @@
           // now - goal
           ...mapState('develop', {
             promotion: 'promotion',
-            skill1: 'skill1',
-            skill2: 'skill2',
-            skill3: 'skill3',
+            skill: 'skill',
           }),
           // resource
           ...mapState('resource', {
