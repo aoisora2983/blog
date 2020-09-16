@@ -11,14 +11,16 @@ class CharacterTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('mst_character')->insert([
-            'name' => 'name',
-            'img' => 'img',
-            'rarity' => 4,
-            'job' => 1,
-            'skill_1' => 'skill_1',
-            'skill_2' => 'skill_2',
-            'skill_3' => 'skill_3',
-        ]);
+        for($i = 1; $i <= 6; $i++) {
+            DB::table('mst_character')->insert([
+                'name' => 'name' . $i,
+                'img' => 'img',
+                'rarity' => $i,
+                'job' => $i,
+                'skill_1' => 'skill_1',
+                'skill_2' => 'skill_2',
+                'skill_3' => 'skill_3',
+            ]);
+        }
     }
 }

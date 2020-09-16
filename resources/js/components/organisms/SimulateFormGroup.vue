@@ -4,22 +4,26 @@
       <v-row
         dense
       >
-        <SelectPromotionForm
+        <SelectForm
           :items="promotion"
+          :labelName="'Promotion'"
          />
         <InputNumberForm />
       </v-row>
       <v-row dense>
-        <SelectSkillForm
-          :items="skill"
+        <SelectForm
+          v-if="skill.skill1 !== null"
+          :items="skill.skill1"
           :labelName="'Skill 1'"
          />
-        <SelectSkillForm
-          :items="skill"
+        <SelectForm
+          v-if="skill.skill2 !== null"
+          :items="skill.skill2"
           :labelName="'Skill 2'"
          />
-        <SelectSkillForm
-          :items="skill"
+        <SelectForm
+          v-if="skill.skill3 !== null"
+          :items="skill.skill3"
           :labelName="'Skill 3'"
          />
       </v-row>
@@ -28,12 +32,11 @@
 </template>
 
 <script>
-    import SelectPromotionForm from '../molecules/SelectPromotionForm'
-    import SelectSkillForm from '../molecules/SelectSkillForm'
+    import SelectForm from '../molecules/SelectForm'
     import InputNumberForm from '../molecules/InputNumberForm'
 
     export default {
-      components: { SelectPromotionForm, SelectSkillForm, InputNumberForm },
+      components: { SelectForm, InputNumberForm },
 
       props: {
         promotion: {},

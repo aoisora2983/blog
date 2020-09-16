@@ -29,7 +29,6 @@ const actions = {
 		store.commit('increment', target);
 	},
 	decrement(store, target) {
-		console.log(target);
 		store.commit('decrement', target);
 	}
 }

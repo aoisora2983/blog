@@ -28,15 +28,25 @@
 
 <script>
     import { mapState, mapActions } from 'vuex';
-    
+
     export default {
       props: {
         promotion: {},
         skill: {},
       },
 
-      data: () => ({
-        valid: false,
-      }),
+      methods: {
+        ...mapActions('resource', {
+          materialIncrement: 'increment',
+          materialDecrement: 'decrement'
+        }),
+      },
+      
+      computed: {
+        // resource
+        ...mapState('resource', {
+          materials: 'materials'
+        }),
+      },
     }
 </script>

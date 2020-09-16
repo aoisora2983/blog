@@ -1,8 +1,5 @@
 <template>
-  <v-col
-    cols="6"
-    md="4"
-  >            
+  <v-col>            
     <v-text-field
       label="Lv"
       type="number"

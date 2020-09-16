@@ -1,8 +1,5 @@
 <template>
-  <v-col
-    cols="4"
-    md="4"
-  >
+  <v-col>
     <v-select
       :items="items"
       :label="labelName"

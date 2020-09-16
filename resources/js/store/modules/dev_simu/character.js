@@ -1,18 +1,38 @@
+import Axios from "axios";
+
 const state = {
-	name: 'Silver Ash',
-	job: 'Warrior',
-	rarity: 6,
-	img: ''
+	character: []
 };
 
 const mutations = {
-	setName(state, { name }) {
-		state.name = name;
+	setData(state, character) {
+		state.character = [character];
 	}
 };
+
+const actions = {
+	getCharacter(store, id) {
+		Axios.post('/api/character', {
+			id: id
+		})
+			.then(res => {
+				store.commit('setData', res.data);
+			}).catch(error => {
+				console.log('[Error]' + error);
+			});
+	}
+};
+
+const getters = {
+	get(state) {
+		return state.list;
+	}
+}
 
 export default {
 	namespaced: true,
 	state,
-	mutations
+	mutations,
+	actions,
+	getters
 };

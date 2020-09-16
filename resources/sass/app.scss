@@ -8,9 +8,23 @@
 }
 
 .chara-card-list {
-    margin-top: 8px;
+	margin-top: 8px;
+	overflow-y: scroll;
+	>li {
+		display: inline-block;
+	}
+}
+
+ul {
+	list-style: none;
+	padding: 0 !important;
+	white-space: nowrap;
 }
 
 h2 {
+    padding: 10px 0 0 8px;
+}
+
+h3 {
     padding: 10px 0 0 8px;
 }

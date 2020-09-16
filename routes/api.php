@@ -6,6 +6,7 @@ use App\Http\Action\PingAction;
 use App\Http\Action\Character\GetRarityListAction;
 use App\Http\Action\Character\GetJobListAction;
 use App\Http\Action\Character\GetCharacterListAction;
+use App\Http\Action\Character\GetCharacterAction;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/rarity', GetRarityListAction::class);
 Route::get('/job', GetJobListAction::class);
 // Route::get('/develop', GetDevelopListAction::class);
 Route::get('/character', GetCharacterListAction::class);
+Route::post('/character', GetCharacterAction::class);
 // Route::post('/character/search', FindCharacterListAction::class);
 // Route::get('/material', GetMaterialListAction::class);
 // Route::get('/stage', GetStageListAction::class);
