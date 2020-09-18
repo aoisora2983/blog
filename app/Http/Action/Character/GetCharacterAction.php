@@ -26,11 +26,11 @@ class GetCharacterAction
             $item->img,
             $item->rarity,
             $item->job,
-            explode(',', $item->promotion),
+            $item->promotion ? (array)json_decode($item->promotion) : null,
             array (
-                'skill1'=>$item->skill1 ? explode(',', $item->skill1) : null,
-                'skill2'=>$item->skill2 ? explode(',', $item->skill2) : null,
-                'skill3'=>$item->skill3 ? explode(',', $item->skill3) : null,
+                'skill1'=>$item->skill1 ? (array)json_decode($item->skill1) : null,
+                'skill2'=>$item->skill2 ? (array)json_decode($item->skill2) : null,
+                'skill3'=>$item->skill3 ? (array)json_decode($item->skill3) : null,
             )
         );
 

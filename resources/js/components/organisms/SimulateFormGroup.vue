@@ -5,6 +5,7 @@
         dense
       >
         <SelectForm
+          v-if="promotion !== null"
           :items="promotion"
           :labelName="'Promotion'"
          />

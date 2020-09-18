@@ -26,11 +26,23 @@
         <v-btn block color="primary" dark>Simulate</v-btn>
 
         <h2>Required Material</h2>
-        <MaterialTable />
+        <MaterialCard />
 
         <v-btn block color="primary" dark>Simulate Stage</v-btn>
 
-        <h2>Required Stage Trial</h2>
+        <h2>
+          Required Stage Trial
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                medium
+                v-bind="attrs"
+                v-on="on"
+              >mdi-comment-alert</v-icon>
+            </template>
+            <span>This is not Sure</span>
+          </v-tooltip>
+        </h2>
         <StageTable 
           :stages="stages"
         />
@@ -46,7 +58,7 @@
     import NavBar from '../organisms/NavBar';
     import CharaSearch from '../organisms/CharaSearch';
     import SimulateFormGroup from '../organisms/SimulateFormGroup';
-    import MaterialTable from '../organisms/MaterialTable';
+    import MaterialCard from '../organisms/MaterialCard';
     import StageTable from '../organisms/StageTable';
     import CharaCard from '../organisms/CharaCard';
 
@@ -56,7 +68,7 @@
           CharaSearch,
           CharaCard, 
           SimulateFormGroup, 
-          MaterialTable, 
+          MaterialCard, 
           StageTable, 
         },
 

@@ -10,7 +10,7 @@ class Character
 	private string $img;
 	private int $rarity;
 	private int $job;
-	private array $promotion;
+	private ?array $promotion;
 	private array $skill;
 
 	public function __construct (
@@ -19,7 +19,7 @@ class Character
 		string $img,
 		int $rarity,
 		int $job,
-		array $promotion,
+		?array $promotion,
 		array $skill
 	) {
 		$this->id = $id;

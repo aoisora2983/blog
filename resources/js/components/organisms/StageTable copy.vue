@@ -12,7 +12,7 @@
         <tr v-for="stage in stages" :key="stage.id">
           <td>{{ stage.name }}</td>
           <td>{{ stage.required }}</td>
-          <td>{{ stage.stamina}}</td>
+          <td>{{ stage.stamina }}</td>
         </tr>
       </tbody>
     </template>

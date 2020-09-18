@@ -15,9 +15,11 @@ class CreateMstDevelopTable extends Migration
     {
         Schema::create('mst_develop', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->integer('rarity');
-            $table->integer('group_id');
+            $table->text('promotion')->nullable();
+            $table->text('skill1')->nullable();
+            $table->text('skill2')->nullable();
+            $table->text('skill3')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

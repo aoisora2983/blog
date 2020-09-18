@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="344"
+    max-width="500"
     outlined
   >
     <v-list-item>
@@ -18,15 +18,11 @@
       ></v-list-item-avatar>
     </v-list-item>
 
-    <v-divider></v-divider>
-
     <h3>Now</h3>
     <SimulateFormGroup
       :promotion="character.promotion"
       :skill="character.skill"
     />
-
-    <v-divider></v-divider>
 
     <h3>Goal</h3>
     <SimulateFormGroup
