@@ -1,24 +1,8 @@
 //
-#contents {
-	padding: 8px;
-}
-
-.container {
-	padding: 0 8px;
-}
-
-.chara-card-list {
-	margin-top: 8px;
-	overflow-y: scroll;
-	>li {
-		display: inline-block;
-	}
-}
-
 ul {
-	list-style: none;
-	padding: 0 !important;
-	white-space: nowrap;
+    list-style: none;
+    padding: 0 !important;
+    white-space: nowrap;
 }
 
 h2 {
@@ -27,4 +11,33 @@ h2 {
 
 h3 {
     padding: 10px 0 0 8px;
+}
+
+#contents {
+    padding: 8px;
+}
+
+.container {
+    padding: 0 8px;
+}
+
+.chara-card-list {
+    margin-top: 8px;
+    overflow-y: scroll;
+    > li {
+        display: inline-block;
+    }
+}
+
+.material-card-list {
+    margin-top: 8px;
+    overflow-y: scroll;
+    > li {
+        display: inline-block;
+        padding-left: 5px;
+    }
+}
+
+.v-btn {
+    margin: 8px 0;
 }

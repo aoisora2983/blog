@@ -9,7 +9,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="stage in stages" :key="stage.id">
+        <tr
+          v-for="stage in stageList"
+          :key="stage.id"
+        >
           <td>{{ stage.name }}</td>
           <td>{{ stage.required }}</td>
           <td>{{ stage.stamina}}</td>
@@ -20,9 +23,9 @@
 </template>
 
 <script>
-    export default {
-      props: {
-        stages: {},
-      },
-    }
+export default {
+  props: {
+    stageList: {},
+  },
+};
 </script>

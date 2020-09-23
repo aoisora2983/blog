@@ -2,33 +2,35 @@
   <v-app id="inspire">
     <NavBar />
 
-
     <div id="contents">
-      <CharaSearch
-        :characterList="characterSearchList"
-       />
+      <CharaSearch :characterList="characterSearchList" />
 
-      <div
-        v-if="characterList.length"
-      >
-        <ul 
-          class="chara-card-list"
-        >
-          <li
-              v-for="character in characterList" :key="character.id"
-          >
-            <CharaCard
-              :character="character"
-            />
-          </li>
-        </ul>
+      <div v-if="characterList.length">
 
-        <v-btn block color="primary" dark>Simulate</v-btn>
+        <CharaCardList :characterList="characterList" />
+
+        <v-btn
+          block
+          color="primary"
+          dark
+        >Simulate</v-btn>
+
+      </div>
+
+      <div v-if="materialList.length">
 
         <h2>Required Material</h2>
-        <MaterialCard />
+        <MaterialCardList :materialList="materialList" />
 
-        <v-btn block color="primary" dark>Simulate Stage</v-btn>
+        <v-btn
+          block
+          color="primary"
+          dark
+        >Simulate Stage</v-btn>
+
+      </div>
+
+      <div v-if="stageList.length">
 
         <h2>
           Required Stage Trial
@@ -43,68 +45,68 @@
             <span>This is not Sure</span>
           </v-tooltip>
         </h2>
-        <StageTable 
-          :stages="stages"
-        />
+        <StageTable :stageList="stageList" />
+
       </div>
+    </div>
 
     </div>
   </v-app>
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex';
-    
-    import NavBar from '../organisms/NavBar';
-    import CharaSearch from '../organisms/CharaSearch';
-    import SimulateFormGroup from '../organisms/SimulateFormGroup';
-    import MaterialCard from '../organisms/MaterialCard';
-    import StageTable from '../organisms/StageTable';
-    import CharaCard from '../organisms/CharaCard';
+import { mapState, mapActions } from "vuex";
 
-    export default {
-        components: { 
-          NavBar, 
-          CharaSearch,
-          CharaCard, 
-          SimulateFormGroup, 
-          MaterialCard, 
-          StageTable, 
-        },
+import NavBar from "../organisms/NavBar";
+import CharaSearch from "../organisms/CharaSearch";
+import SimulateFormGroup from "../organisms/SimulateFormGroup";
+import MaterialCardList from "../organisms/MaterialCardList";
+import StageTable from "../organisms/StageTable";
+import CharaCardList from "../organisms/CharaCardList";
 
-        mounted() {
-            this.getCharacterList();
-        },
+export default {
+  components: {
+    NavBar,
+    CharaSearch,
+    CharaCardList,
+    SimulateFormGroup,
+    MaterialCardList,
+    StageTable,
+  },
 
-        methods: {
-          ...mapActions('resource', {
-            materialIncrement: 'increment',
-            materialDecrement: 'decrement'
-          }),
-          ...mapActions('search', {
-            getCharacterList: 'getCharacterList',
-          }),
-        },
+  mounted() {
+    this.getCharacterList();
+  },
 
-        computed: {
-          // search
-          ...mapState('search', {
-            characterSearchList: 'list',
-          }),
-          // chara
-          ...mapState('character', {
-            characterList: 'character',
-          }),
-          // stage
-          ...mapState('stage', {
-            stages: 'stages'
-          }),
-        },
+  methods: {
+    ...mapActions("search", {
+      getCharacterList: "getCharacterList",
+    }),
+  },
 
-        watch: {
-          group () {
-            this.drawer = false
-          },
-        },
-    }
+  computed: {
+    // search
+    ...mapState("search", {
+      characterSearchList: "list",
+    }),
+    // chara
+    ...mapState("character", {
+      characterList: "character",
+    }),
+    // materials
+    ...mapState("resource", {
+      materialList: "materials",
+    }),
+    // stage
+    ...mapState("stage", {
+      stageList: "stages",
+    }),
+  },
+
+  watch: {
+    group() {
+      this.drawer = false;
+    },
+  },
+};
 </script>
