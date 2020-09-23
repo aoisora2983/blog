@@ -16,11 +16,13 @@ class DevelopTableSeeder extends Seeder
         [
             {
                 "id": 1,
-                "name": "未昇進"
+                "name": "未昇進",
+                "max": 60
             },
             {
                 "id": 2,
-                "name": "昇進I"
+                "name": "昇進I",
+                "max": 70
             }
         ]
         ';
