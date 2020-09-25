@@ -12,7 +12,8 @@ class LevelTableSeeder extends Seeder
     public function run()
     {
         DB::table('mst_level')->insert([
-            'level_kind' => '1',
+            'promotion_id' => '1',
+            'value' => 1,
             'required_experience' => 1000,
             'required_money' => 2000,
         ]);

@@ -8,8 +8,11 @@
           v-if="promotion !== null"
           :items="promotion"
           :labelName="'Promotion'"
+          @updated="updatePromotion" 
          />
-        <InputNumberForm />
+        <InputNumberForm 
+          :selectPromotion="promotion.find(promo => promo.id === selectPromotion)"
+        />
       </v-row>
       <v-row dense>
         <SelectForm
@@ -46,6 +49,17 @@
 
       data: () => ({
         valid: false,
+        selectPromotion: null,
+        selectLv: null,
+        selectSkill1: null,
+        selectSkill2: null,
+        selectSkill3: null,
       }),
+
+      methods: {
+        updatePromotion(value) {
+          this.selectPromotion = value;
+        }
+      }
     }
 </script>

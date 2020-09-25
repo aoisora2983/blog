@@ -1,6 +1,7 @@
 <template>
   <v-col>            
     <v-text-field
+      v-model="selectPromotion.max"
       label="Lv"
       type="number"
       required
@@ -11,5 +12,8 @@
 
 <script>
     export default {
+      props: {
+        selectPromotion: {},
+      }
     }
 </script>

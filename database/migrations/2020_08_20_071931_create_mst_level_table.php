@@ -15,7 +15,8 @@ class CreateMstLevelTable extends Migration
     {
         Schema::create('mst_level', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level_kind');
+            $table->integer('promotion_id');
+            $table->integer('value');
             $table->integer('required_experience');
             $table->integer('required_money');
             $table->timestamp('created_at')->useCurrent();

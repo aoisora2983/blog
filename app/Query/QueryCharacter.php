@@ -21,22 +21,21 @@ class QueryCharacter {
 				'mst_character.img',
 				'mst_character.rarity',
 				'mst_character.job',
-				'mst_develop.promotion',
-				'mst_develop.skill1',
-				'mst_develop.skill2',
-				'mst_develop.skill3',
-		);
-
-		$query->leftJoin('mst_develop', function($query) {
-			$query->on(
-				'mst_develop.rarity',
-				'=',
-				'mst_character.rarity'
-			);
-		});
-
-		$query->where('mst_character.id', $id);
+		)
+		->where('mst_character.id', $id);
 
 		return $query->first();
 	}
+
+	public function findPromotionById(int $rarity): ?object {
+        $query = DB::table('mst_develop');
+
+		$query->select(
+				'mst_develop.name',
+		)
+		->where('mst_develop.rarity', '>', $rarity);
+
+		return $query->first();
+	}
+
 }

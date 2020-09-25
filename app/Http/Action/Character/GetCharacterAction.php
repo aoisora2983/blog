@@ -18,15 +18,16 @@ class GetCharacterAction
     {
         $query = resolve(QueryCharacter::class);
 
-        $item = $query->findById($request->id);
+        $character = $query->findById($request->id);
+        $promotion = $query->findPromotionById($character->rarity);
 
-        $character = new Character(
-            $item->id,
-            $item->name,
-            $item->img,
-            $item->rarity,
-            $item->job,
-            $item->promotion ? (array)json_decode($item->promotion) : null,
+        $result = new Character(
+            $character->id,
+            $character->name,
+            $character->img,
+            $character->rarity,
+            $character->job,
+            $character->promotion ? (array)json_decode($item->promotion) : null,
             array (
                 'skill1'=>$item->skill1 ? (array)json_decode($item->skill1) : null,
                 'skill2'=>$item->skill2 ? (array)json_decode($item->skill2) : null,
@@ -35,7 +36,7 @@ class GetCharacterAction
         );
 
         return response()->json(
-            $character->toArray()
+            $result->toArray()
         );
     }
 }

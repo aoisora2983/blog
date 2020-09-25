@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMstDevelopTable extends Migration
+class CreateMstSkillTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateMstDevelopTable extends Migration
      */
     public function up()
     {
-        Schema::create('mst_develop', function (Blueprint $table) {
+        Schema::create('mst_skill', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('kind')->nullable();
             $table->text('name')->nullable();
             $table->integer('rarity');
             $table->timestamp('created_at')->useCurrent();
