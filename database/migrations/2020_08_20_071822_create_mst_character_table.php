@@ -19,9 +19,10 @@ class CreateMstCharacterTable extends Migration
             $table->text('img');
             $table->integer('rarity');
             $table->integer('job');
-            $table->string('skill_1', 50)->nullable();
-            $table->string('skill_2', 50)->nullable();
-            $table->string('skill_3', 50)->nullable();
+            $table->integer('tag1')->nullable();
+            $table->integer('tag2')->nullable();
+            $table->integer('tag3')->nullable();
+            $table->integer('tag4')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

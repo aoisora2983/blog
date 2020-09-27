@@ -16,26 +16,58 @@ class QueryCharacter {
         $query = DB::table('mst_character');
 
 		$query->select(
-				'mst_character.id',
-				'mst_character.name',
-				'mst_character.img',
-				'mst_character.rarity',
-				'mst_character.job',
+			'mst_character.id',
+			'mst_character.name',
+			'mst_character.img',
+			'mst_character.rarity',
+			'mst_character.job',
 		)
 		->where('mst_character.id', $id);
 
 		return $query->first();
 	}
 
-	public function findPromotionById(int $rarity): ?object {
+	public function findPromotionByRarity(int $rarity): ?array {
         $query = DB::table('mst_develop');
 
 		$query->select(
-				'mst_develop.name',
+			'mst_develop.id',
+			'mst_develop.name',
 		)
-		->where('mst_develop.rarity', '>', $rarity);
+		->selectRaw(
+			'MAX(mst_level.value) as max'
+		);
 
-		return $query->first();
+		$query->join('mst_level', function ($query) {
+			$query->on(
+				'mst_develop.id',
+				'=',
+				'mst_level.promotion_id'
+			);
+		});
+
+		$query->where('mst_develop.rarity', '<=', $rarity);
+		$query->where('mst_level.rarity', '<=', $rarity);
+
+		$query->groupBy(
+			'mst_develop.id',
+			'mst_develop.name',
+		);
+
+		return $query->get()->toArray();
 	}
 
+	public function findSkillByRarity(int $rarity): ?array {
+        $query = DB::table('mst_skill');
+
+		$query->select(
+			'mst_skill.id',
+			'mst_skill.kind',
+			'mst_skill.name',
+		);
+
+		$query->where('mst_skill.rarity', '<=', $rarity);
+
+		return $query->get()->toArray();
+	}
 }

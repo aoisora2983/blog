@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             StageTableSeeder::class,
             CharacterMaterialTableSeeder::class,
             StageMaterialTableSeeder::class,
+            SkillTableSeeder::class,
         ]);
     }
 }

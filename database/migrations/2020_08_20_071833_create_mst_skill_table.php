@@ -30,6 +30,6 @@ class CreateMstSkillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mst_develop');
+        Schema::dropIfExists('mst_skill');
     }
 }

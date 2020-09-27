@@ -13,9 +13,17 @@ class LevelTableSeeder extends Seeder
     {
         DB::table('mst_level')->insert([
             'promotion_id' => '1',
+            'rarity' => 1,
             'value' => 1,
-            'required_experience' => 1000,
-            'required_money' => 2000,
+            'required_experience' => 100,
+            'required_money' => 100,
+        ]);
+        DB::table('mst_level')->insert([
+            'promotion_id' => '1',
+            'rarity' => 1,
+            'value' => 2,
+            'required_experience' => 200,
+            'required_money' => 200,
         ]);
     }
 }

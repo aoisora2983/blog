@@ -21,5 +21,10 @@ class SkillTableSeeder extends Seeder
             'name' => '特化I',
             'rarity' => '4',
         ]);
+        DB::table('mst_skill')->insert([
+            'kind' => 2,
+            'name' => '1',
+            'rarity' => '4',
+        ]);
     }
 }

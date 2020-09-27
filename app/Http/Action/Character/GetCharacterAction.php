@@ -16,10 +16,16 @@ class GetCharacterAction
      */
     public function __invoke(Request $request)
     {
-        $query = resolve(QueryCharacter::class);
+        $queryService = resolve(QueryCharacter::class);
 
-        $character = $query->findById($request->id);
-        $promotion = $query->findPromotionById($character->rarity);
+        $character = $queryService->findById($request->id);
+        $promotion = $queryService->findPromotionByRarity($character->rarity);
+        $skills = $queryService->findSkillByRarity($character->rarity);
+
+        $skillList = array();
+        foreach ($skills as $skill) {
+            $skillList[$skill->kind][] = $skill;
+        }
 
         $result = new Character(
             $character->id,
@@ -27,12 +33,8 @@ class GetCharacterAction
             $character->img,
             $character->rarity,
             $character->job,
-            $character->promotion ? (array)json_decode($item->promotion) : null,
-            array (
-                'skill1'=>$item->skill1 ? (array)json_decode($item->skill1) : null,
-                'skill2'=>$item->skill2 ? (array)json_decode($item->skill2) : null,
-                'skill3'=>$item->skill3 ? (array)json_decode($item->skill3) : null,
-            )
+            $promotion ?? null,
+            $skillList ?? null,
         );
 
         return response()->json(

@@ -11,7 +11,7 @@ class Character
 	private int $rarity;
 	private int $job;
 	private ?array $promotion;
-	private array $skill;
+	private ?array $skill;
 
 	public function __construct (
 		int $id,
@@ -20,7 +20,7 @@ class Character
 		int $rarity,
 		int $job,
 		?array $promotion,
-		array $skill
+		?array $skill
 	) {
 		$this->id = $id;
 		$this->name = $name;

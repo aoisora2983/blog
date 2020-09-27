@@ -17,9 +17,10 @@ class CharacterTableSeeder extends Seeder
                 'img' => 'img',
                 'rarity' => $i,
                 'job' => $i,
-                'skill_1' => 'skill_1',
-                'skill_2' => 'skill_2',
-                'skill_3' => 'skill_3',
+                'tag1' => 1,
+                'tag2' => 2,
+                'tag3' => 3,
+                'tag4' => null,
             ]);
         }
     }
