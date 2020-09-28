@@ -46,21 +46,38 @@
 
       data: () => ({
         valid: false,
-        selectPromotion: 1,
+        selectPromotion: null,
         inputLevel: null,
         selectSkill1: null,
         selectSkill2: null,
         selectSkill3: null,
       }),
 
+      created() {
+        let _promotion = this.promotion;
+        if (this.placeholder === 'min') {
+          this.selectPromotion = _promotion[0].id;
+        } else {
+          this.selectPromotion = _promotion[_promotion.length - 1].id;
+        }
+      },
+
       methods: {
         updatePromotion(value) {
           this.selectPromotion = value;
         },
         updateSkill(value) {
+          console.log(this.skillList);
+          for (let index in this.skillList) {
+            console.log(this.skillList.index);
+          }
+          if (value) {
+
+          }
+          this.selectSkill1 = value;
         },
         updateLevel(value) {
-          
+          this.inputLevel = value;          
         }
       }
     }
