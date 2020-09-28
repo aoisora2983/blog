@@ -11,15 +11,15 @@ class DevelopTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('mst_develop')->insert([
+        DB::table('mst_promotion')->insert([
             'name' => '未昇進',
             'rarity' => 1,
         ]);
-        DB::table('mst_develop')->insert([
+        DB::table('mst_promotion')->insert([
             'name' => '昇進I',
             'rarity' => 3,
         ]);
-        DB::table('mst_develop')->insert([
+        DB::table('mst_promotion')->insert([
             'name' => '昇進II',
             'rarity' => 4,
         ]);

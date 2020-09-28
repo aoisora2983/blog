@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMstDevelopTable extends Migration
+class CreateMstPromotionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMstDevelopTable extends Migration
      */
     public function up()
     {
-        Schema::create('mst_develop', function (Blueprint $table) {
+        Schema::create('mst_promotion', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name')->nullable();
             $table->integer('rarity');
@@ -29,6 +29,6 @@ class CreateMstDevelopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mst_develop');
+        Schema::dropIfExists('mst_promotion');
     }
 }

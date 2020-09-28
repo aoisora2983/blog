@@ -27,13 +27,15 @@
         <h3>Now</h3>
         <SimulateFormGroup
           :promotion="character.promotion"
-          :skill="character.skill"
+          :skillList="character.skill"
+          :placeholder="'min'"
         />
 
         <h3>Goal</h3>
         <SimulateFormGroup
           :promotion="character.promotion"
-          :skill="character.skill"
+          :skillList="character.skill"
+          :placeholder="'max'"
         />
 
       </v-card>

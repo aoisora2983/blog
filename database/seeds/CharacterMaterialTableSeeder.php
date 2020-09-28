@@ -13,7 +13,7 @@ class CharacterMaterialTableSeeder extends Seeder
     {
         DB::table('tbl_character_material')->insert([
             'character_id' => 1,
-            'develop_id' => 1,
+            'promotion_id' => 1,
             'material_id' => 1,
             'required_number' => 2,
         ]);

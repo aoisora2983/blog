@@ -18,11 +18,16 @@
       props: {
         items: {},
         labelName: '',
+        placeholder: null,
       },
 
       data: () => ({
-        model: false,
+        model: null,
       }),
+
+      created() {
+        this.model = this.placeholder;
+      },
 
       methods: {
         onChange() {

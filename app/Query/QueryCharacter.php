@@ -28,30 +28,30 @@ class QueryCharacter {
 	}
 
 	public function findPromotionByRarity(int $rarity): ?array {
-        $query = DB::table('mst_develop');
+        $query = DB::table('mst_promotion');
 
 		$query->select(
-			'mst_develop.id',
-			'mst_develop.name',
+			'mst_promotion.id',
+			'mst_promotion.name',
 		)
 		->selectRaw(
 			'MAX(mst_level.value) as max'
 		);
 
-		$query->join('mst_level', function ($query) {
+		$query->leftJoin('mst_level', function ($query) {
 			$query->on(
-				'mst_develop.id',
+				'mst_promotion.id',
 				'=',
 				'mst_level.promotion_id'
 			);
 		});
 
-		$query->where('mst_develop.rarity', '<=', $rarity);
+		$query->where('mst_promotion.rarity', '<=', $rarity);
 		$query->where('mst_level.rarity', '<=', $rarity);
 
 		$query->groupBy(
-			'mst_develop.id',
-			'mst_develop.name',
+			'mst_promotion.id',
+			'mst_promotion.name',
 		);
 
 		return $query->get()->toArray();

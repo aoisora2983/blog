@@ -15,19 +15,19 @@ class CreateTblCharacterMaterialTable extends Migration
     {
         Schema::create('tbl_character_material', function (Blueprint $table) {
             $table->integer('character_id')->unsigned();
-            $table->integer('develop_id')->unsigned();
+            $table->integer('promotion_id')->unsigned();
             $table->integer('material_id')->unsigned();
             $table->integer('required_number');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
 
-            $table->primary(['character_id', 'develop_id', 'material_id'])
-                  ->name('character_id_develop_id_material_id_primary');
+            $table->primary(['character_id', 'promotion_id', 'material_id'])
+                  ->name('character_id_promotion_id_material_id_primary');
 
             $table->foreign('character_id')->references('id')
                   ->on('mst_character')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('develop_id')->references('id')
-                  ->on('mst_develop')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('promotion_id')->references('id')
+                  ->on('mst_promotion')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('material_id')->references('id')
                   ->on('mst_material')->onDelete('cascade')->onUpdate('cascade');
         });
