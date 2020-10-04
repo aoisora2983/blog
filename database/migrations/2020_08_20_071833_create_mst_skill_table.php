@@ -18,6 +18,7 @@ class CreateMstSkillTable extends Migration
             $table->integer('kind')->nullable();
             $table->text('name')->nullable();
             $table->integer('rarity');
+            $table->integer('level');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

@@ -1,84 +1,99 @@
 <template>
   <v-form v-model="valid">
     <v-container>
-      <v-row
-        dense
-      >
+      <v-row dense>
         <PromotionSelectForm
           v-if="promotion.length > 1"
           :items="promotion"
           :labelName="'Promotion'"
           :placeholder="placeholder === 'min' ? 1 : promotion.length"
-          @updated="updatePromotion" 
-         />
-        <InputNumberForm 
+          @updated="updatePromotion"
+        />
+        <InputNumberForm
           :selectPromotion="promotion.find(promo => promo.id === selectPromotion)"
           :placeholder="placeholder === 'min' ? 1 : promotion.find(promo => promo.id === selectPromotion).max"
-          @updated="updateLevel" 
+          @updated="updateLevel"
         />
       </v-row>
       <v-row dense>
         <SkillSelectForm
-          v-for="(skill, index) in skillList" :key="index"
+          v-for="(skill, index) in skillList"
+          :key="index"
+          :index="index"
           :items="skill"
           :labelName="'Skill ' + index"
           :placeholder="placeholder === 'min' ? skill[0] : skill[skill.length-1]"
-          @updated="updateSkill" 
-         />
+          :skillLevel="skillLevel"
+          @updated="updateSkill"
+        />
       </v-row>
     </v-container>
   </v-form>
 </template>
 
 <script>
-    import PromotionSelectForm from '../molecules/PromotionSelectForm'
-    import InputNumberForm from '../molecules/InputNumberForm'
-    import SkillSelectForm from '../molecules/SkillSelectForm'
+import PromotionSelectForm from "../molecules/PromotionSelectForm";
+import InputNumberForm from "../molecules/InputNumberForm";
+import SkillSelectForm from "../molecules/SkillSelectForm";
 
-    export default {
-      components: { PromotionSelectForm, InputNumberForm, SkillSelectForm },
+export default {
+  components: { PromotionSelectForm, InputNumberForm, SkillSelectForm },
 
-      props: {
-        promotion: {},
-        skillList: {},
-        placeholder: '',
-      },
+  props: {
+    promotion: {},
+    skillList: {},
+    placeholder: "",
+  },
 
-      data: () => ({
-        valid: false,
-        selectPromotion: null,
-        inputLevel: null,
-        selectSkill1: null,
-        selectSkill2: null,
-        selectSkill3: null,
-      }),
+  data: () => ({
+    valid: false,
+    selectPromotion: null,
+    inputLevel: null,
+    selectSkill: {
+      0: null,
+      1: null,
+      2: null,
+    },
+    skillLevel: null,
+  }),
 
-      created() {
-        let _promotion = this.promotion;
-        if (this.placeholder === 'min') {
-          this.selectPromotion = _promotion[0].id;
-        } else {
-          this.selectPromotion = _promotion[_promotion.length - 1].id;
-        }
-      },
+  created() {
+    // 初期昇進id、レベル、スキルレベルid設定
+    let _promotion = this.promotion;
+    if (this.placeholder === "min") {
+      this.selectPromotion = _promotion[0].id;
+      this.inputLevel = 1;
+    } else {
+      this.selectPromotion = _promotion[_promotion.length - 1].id;
+      this.inputLevel = _promotion[_promotion.length - 1].max;
+    }
 
-      methods: {
-        updatePromotion(value) {
-          this.selectPromotion = value;
-        },
-        updateSkill(value) {
-          console.log(this.skillList);
-          for (let index in this.skillList) {
-            console.log(this.skillList.index);
-          }
-          if (value) {
+    for (let index in this.selectSkill) {
+      let skill = this.skillList[index];
+      if (!skill) {
+        this.selectSkill[index] = null;
+        return;
+      }
 
-          }
-          this.selectSkill1 = value;
-        },
-        updateLevel(value) {
-          this.inputLevel = value;          
-        }
+      if (this.placeholder === "min") {
+        this.selectSkill[index] = skill[0].id;
+      } else {
+        this.selectSkill[index] = skill[skill.length - 1].id;
       }
     }
+  },
+
+  methods: {
+    updatePromotion(value) {
+      this.selectPromotion = value;
+    },
+    updateLevel(value) {
+      this.inputLevel = value;
+    },
+    updateSkill(value) {
+      this.selectSkill[value.index] = value.id;
+      this.skillLevel = value.level;
+    },
+  },
+};
 </script>

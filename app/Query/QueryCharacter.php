@@ -64,6 +64,7 @@ class QueryCharacter {
 			'mst_skill.id',
 			'mst_skill.kind',
 			'mst_skill.name',
+			'mst_skill.level',
 		);
 
 		$query->where('mst_skill.rarity', '<=', $rarity);
