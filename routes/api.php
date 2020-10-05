@@ -7,6 +7,7 @@ use App\Http\Action\Character\GetRarityListAction;
 use App\Http\Action\Character\GetJobListAction;
 use App\Http\Action\Character\GetCharacterListAction;
 use App\Http\Action\Character\GetCharacterAction;
+use App\Http\Action\Material\GetMaterialListAction;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +27,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/ping', PingAction::class);
 
 // character
-Route::get('/rarity', GetRarityListAction::class);
-Route::get('/job', GetJobListAction::class);
-// Route::get('/develop', GetDevelopListAction::class);
 Route::get('/character', GetCharacterListAction::class);
 Route::post('/character', GetCharacterAction::class);
-// Route::post('/character/search', FindCharacterListAction::class);
-// Route::get('/material', GetMaterialListAction::class);
+Route::post('/material', GetMaterialListAction::class);
 // Route::get('/stage', GetStageListAction::class);
 // Route::post('/material/stage', GetMaterialStageListAction::class);
 

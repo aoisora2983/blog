@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 const state = {
     materials: [
         {
@@ -24,6 +26,11 @@ const mutations = {
     },
     remove(state, target) {
         state.materials.splice(target, target + 1);
+    },
+
+    // api
+    setData(state, materials) {
+        state.materials = materials;
     }
 };
 
@@ -36,6 +43,20 @@ const actions = {
     },
     remove(store, target) {
         store.commit("remove", target);
+    },
+
+    // api
+    getMaterial(store, { now, goal }) {
+        Axios.post("/api/material", {
+            now: now,
+            goal: goal
+        })
+            .then(res => {
+                store.commit("setData", res.data);
+            })
+            .catch(error => {
+                console.log("[Error]" + error);
+            });
     }
 };
 

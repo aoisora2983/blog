@@ -1,30 +1,29 @@
 const state = {
-	devList: [
-		{
-			id: null,
-			now: {
-				nowPromotion: null,
-				nowLevel: null,
-				nowSkill1: null,
-				nowSkill2: null,
-				nowSkill3: null,
-			},
-			goal: {
-				goalPromotion: null,
-				goalLevel: null,
-				goalSkill1: null,
-				goalSkill2: null,
-				goalSkill3: null,
-			},
-		}
-	]
+    now: null,
+    goal: null
 };
 
 const mutations = {
+    setNow(state, now) {
+        state.now = now;
+    },
+    setGoal(state, goal) {
+        state.goal = goal;
+    }
+};
+
+const actions = {
+    setNow(store, now) {
+        store.commit("setNow", now);
+    },
+    setGoal(store, goal) {
+        store.commit("setGoal", goal);
+    }
 };
 
 export default {
-	namespaced: true,
-	state,
-	mutations
+    namespaced: true,
+    state,
+    mutations,
+    actions
 };

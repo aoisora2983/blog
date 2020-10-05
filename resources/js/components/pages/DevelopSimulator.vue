@@ -13,6 +13,7 @@
           block
           color="primary"
           dark
+          @click="simulate"
         >Simulate</v-btn>
 
       </div>
@@ -50,7 +51,6 @@
       </div>
     </div>
 
-    </div>
   </v-app>
 </template>
 
@@ -82,6 +82,16 @@ export default {
     ...mapActions("search", {
       getCharacterList: "getCharacterList",
     }),
+    ...mapActions("resource", {
+      getMaterial: "getMaterial",
+    }),
+
+    simulate: function () {
+      // 素材取得
+      this.getMaterial({ now: this.now, goal: this.goal });
+
+      // ステージ取得
+    },
   },
 
   computed: {
@@ -92,6 +102,11 @@ export default {
     // chara
     ...mapState("character", {
       characterList: "character",
+    }),
+    // develop
+    ...mapState("develop", {
+      now: "now",
+      goal: "goal",
     }),
     // materials
     ...mapState("resource", {

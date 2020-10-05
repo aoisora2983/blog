@@ -29,6 +29,7 @@
           :promotion="character.promotion"
           :skillList="character.skill"
           :placeholder="'min'"
+          @updated="updateDevelop"
         />
 
         <h3>Goal</h3>
@@ -36,6 +37,7 @@
           :promotion="character.promotion"
           :skillList="character.skill"
           :placeholder="'max'"
+          @updated="updateDevelop"
         />
 
       </v-card>
@@ -45,6 +47,7 @@
 
 <script>
 import SimulateFormGroup from "../organisms/SimulateFormGroup";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -53,6 +56,27 @@ export default {
 
   props: {
     characterList: {},
+  },
+
+  computed: {
+    ...mapState("develop", {
+      now: "now",
+      goal: "goal",
+    }),
+  },
+
+  methods: {
+    ...mapActions("develop", {
+      setNow: "setNow",
+      setGoal: "setGoal",
+    }),
+    updateDevelop: function (value) {
+      if (value.kind === "now") {
+        this.setNow(value);
+      } else {
+        this.setGoal(value);
+      }
+    },
   },
 };
 </script>

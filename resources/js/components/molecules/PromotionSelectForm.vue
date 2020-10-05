@@ -14,25 +14,25 @@
 </template>
 
 <script>
-    export default {
-      props: {
-        items: {},
-        labelName: '',
-        placeholder: null,
-      },
+  export default {
+    props: {
+      items: {},
+      labelName: '',
+      placeholder: null,
+    },
 
-      data: () => ({
-        model: null,
-      }),
+    data: () => ({
+      model: null,
+    }),
 
-      created() {
-        this.model = this.placeholder;
-      },
+    created() {
+      this.model = this.placeholder;
+    },
 
-      methods: {
-        onChange() {
-          this.$emit('updated', this.model)
-        }
+    methods: {
+      onChange() {
+        this.$emit('updated', this.model)
       }
     }
+  }
 </script>

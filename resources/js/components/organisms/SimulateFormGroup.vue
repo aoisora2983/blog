@@ -72,6 +72,7 @@ export default {
       let skill = this.skillList[index];
       if (!skill) {
         this.selectSkill[index] = null;
+        this.updateDevelop();
         return;
       }
 
@@ -81,18 +82,39 @@ export default {
         this.selectSkill[index] = skill[skill.length - 1].id;
       }
     }
+
+    this.updateDevelop();
   },
 
   methods: {
     updatePromotion(value) {
       this.selectPromotion = value;
+      this.updateDevelop();
     },
     updateLevel(value) {
       this.inputLevel = value;
+      this.updateDevelop();
     },
     updateSkill(value) {
       this.selectSkill[value.index] = value.id;
       this.skillLevel = value.level;
+      this.updateDevelop();
+    },
+
+    // 入力値を整理してemitする
+    updateDevelop() {
+      let array = {
+        kind: this.placeholder === "min" ? "now" : "goal",
+        promotion: this.selectPromotion,
+        level: this.inputLevel,
+        skill: {
+          0: this.selectSkill[0],
+          1: this.selectSkill[1],
+          2: this.selectSkill[2],
+        },
+      };
+
+      this.$emit("updated", array);
     },
   },
 };
