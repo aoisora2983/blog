@@ -1,4 +1,5 @@
 const state = {
+    characterId: null,
     now: null,
     goal: null
 };

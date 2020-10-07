@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblCharacterMaterialTable extends Migration
+class CreateTblCharacterMaterialPromotionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTblCharacterMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_character_material', function (Blueprint $table) {
+        Schema::create('tbl_character_material_promotion', function (Blueprint $table) {
             $table->integer('character_id')->unsigned();
             $table->integer('promotion_id')->unsigned();
             $table->integer('material_id')->unsigned();
@@ -40,6 +40,6 @@ class CreateTblCharacterMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_character_material');
+        Schema::dropIfExists('tbl_character_material_promotion');
     }
 }
