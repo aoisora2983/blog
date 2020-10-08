@@ -1,25 +1,17 @@
 const state = {
-    characterId: null,
-    now: null,
-    goal: null
+    developList: []
 };
 
 const mutations = {
-    setNow(state, now) {
-        state.now = now;
+    setDevelop(state, { characterId, develop }) {
+        state.developList[characterId] = [develop];
     },
-    setGoal(state, goal) {
-        state.goal = goal;
-    }
 };
 
 const actions = {
-    setNow(store, now) {
-        store.commit("setNow", now);
+    setDevelop(store, { characterId, develop }) {
+        store.commit("setDevelop", { characterId, develop });
     },
-    setGoal(store, goal) {
-        store.commit("setGoal", goal);
-    }
 };
 
 export default {
