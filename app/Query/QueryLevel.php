@@ -9,6 +9,7 @@ use App\Model\Material\Develop;
 
 class QueryLevel {
 	public function find(Develop $now, Develop $goal): ?object {
+		// もっといい方法ありそう
 		$level = Level::selectRaw(
 			'SUM(
 				CASE

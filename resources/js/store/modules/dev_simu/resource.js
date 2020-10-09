@@ -46,10 +46,9 @@ const actions = {
     },
 
     // api
-    getMaterial(store, { now, goal }) {
+    getMaterial(store, developList) {
         Axios.post("/api/material", {
-            now: now,
-            goal: goal
+            developList: developList
         })
             .then(res => {
                 store.commit("setData", res.data);

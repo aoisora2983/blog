@@ -20,6 +20,6 @@ export default new VueRouter({
             path: "/simulator",
             name: "simulator",
             component: simulator
-        }
+        },
     ]
 });

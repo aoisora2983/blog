@@ -20,22 +20,34 @@ class GetMaterialListAction
         $levelQueryService = resolve(QueryLevel::class);
         $materialQueryService = resolve(QueryMaterial::class);
 
-        $characterId = $request['characterId'];
-        $now = new Develop(
-            $request['now']['promotion'],
-            $request['now']['level'],
-            $request['now']['skill'],
-        );
-        $goal = new Develop(
-            $request['goal']['promotion'],
-            $request['goal']['level'],
-            $request['goal']['skill'],
-        );
+        $developList = $request['developList'];
 
-        $level = $levelQueryService->find($now, $goal);
-        $pMaterial = $materialQueryService->findPromotion();
-        $sMaterial = $materialQueryService->findSkill();
+        foreach ($developList as $item) {
+            $characterId = $item['characterId'];
+            $develop = $item['develop'];
 
-        return response()->json($level);
+            $now = new Develop(
+                $develop['now']['promotion'],
+                $develop['now']['level'],
+                $develop['now']['skill'],
+            );
+            $goal = new Develop(
+                $develop['goal']['promotion'],
+                $develop['goal']['level'],
+                $develop['goal']['skill'],
+            );
+
+            $level = $levelQueryService->find($now, $goal);
+            $promotionMaterial = $materialQueryService->findPromotion($characterId, $now, $goal);
+            $skillMaterial = $materialQueryService->findSkill($characterId, $now, $goal);
+
+            return response()->json(
+                [
+                    'level' => $level,
+                    'promotion' => $promotionMaterial,
+                    'skill' => $skillMaterial
+                ]
+            );
+        }
     }
 }

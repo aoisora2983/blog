@@ -27,7 +27,7 @@ export default {
 
   computed: {
     ...mapState("develop", {
-      developList: "developList",
+      developList: "list",
     }),
   },
 
@@ -35,8 +35,8 @@ export default {
     ...mapActions("develop", {
       setDevelop: "setDevelop"
     }),
-    updateCharacterDevelop: function ($characterId, $now, $goal) {
-      this.setDevelop({characterId: $characterId, develop: {$now, $goal}})
+    updateCharacterDevelop: function ($characterId, now, goal) {
+      this.setDevelop({characterId: $characterId, develop: {now, goal}})
     }
   },
 };

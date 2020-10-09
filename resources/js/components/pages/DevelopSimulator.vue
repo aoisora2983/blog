@@ -88,7 +88,7 @@ export default {
 
     simulate: function () {
       // 素材取得
-      this.getMaterial({ now: this.now, goal: this.goal });
+      this.getMaterial(this.developList);
 
       // ステージ取得
     },
@@ -105,8 +105,7 @@ export default {
     }),
     // develop
     ...mapState("develop", {
-      now: "now",
-      goal: "goal",
+      developList: "list"
     }),
     // materials
     ...mapState("resource", {

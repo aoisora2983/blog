@@ -16,6 +16,7 @@ class CreateTblCharacterMaterialSkillTable extends Migration
         Schema::create('tbl_character_material_skill', function (Blueprint $table) {
             $table->integer('character_id')->unsigned();
             $table->integer('skill_id')->unsigned();
+            $table->integer('level')->unsigned();
             $table->integer('material_id')->unsigned();
             $table->integer('required_number');
             $table->timestamp('created_at')->useCurrent();

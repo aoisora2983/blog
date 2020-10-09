@@ -1,10 +1,10 @@
 const state = {
-    developList: []
+    list: []
 };
 
 const mutations = {
     setDevelop(state, { characterId, develop }) {
-        state.developList[characterId] = [develop];
+        state.list = [{ 'characterId': characterId, 'develop': develop }];
     },
 };
 
