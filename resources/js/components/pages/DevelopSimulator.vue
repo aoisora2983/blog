@@ -85,12 +85,16 @@ export default {
     ...mapActions("resource", {
       getMaterial: "getMaterial",
     }),
+    ...mapActions("stage", {
+      getStage: "getStage",
+    }),
 
     simulate: function () {
       // 素材取得
       this.getMaterial(this.developList);
 
       // ステージ取得
+      this.getStage(this.materialList);
     },
   },
 

@@ -17,7 +17,31 @@ const state = {
 	]
 };
 
+const mutations = {
+	// api
+	setData(state, stages) {
+		state.stages = stages;
+	}
+};
+
+const actions = {
+	// api
+	getStage(store, materialList) {
+		Axios.post("/api/stage", {
+			materialList: materialList
+		})
+			.then(res => {
+				store.commit("setData", res.data);
+			})
+			.catch(error => {
+				console.log("[Error]" + error);
+			});
+	}
+};
+
 export default {
 	namespaced: true,
-	state
+	state,
+	mutations,
+	actions
 };

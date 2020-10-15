@@ -18,6 +18,7 @@ class CreateMstMaterialTable extends Migration
             $table->string('name', 50);
             $table->integer('grade');
             $table->text('img');
+            $table->text('option');
             $table->integer('child_material_id')->nullable();
             $table->integer('child_required_number')->nullable();
             $table->timestamp('created_at')->useCurrent();

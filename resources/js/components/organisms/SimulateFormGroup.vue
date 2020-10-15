@@ -58,7 +58,8 @@ export default {
   }),
 
   created() {
-    // 初期昇進id、レベル、スキルレベルid設定
+    // 初期昇進id、レベル、スキルレベル設定
+    // ID, Level
     let _promotion = this.promotion;
     if (this.placeholder === "min") {
       this.selectPromotion = _promotion[0].id;
@@ -68,6 +69,7 @@ export default {
       this.inputLevel = _promotion[_promotion.length - 1].max;
     }
 
+    // Skill
     for (let index in this.selectSkill) {
       let skill = this.skillList[index];
       if (!skill) {
@@ -77,9 +79,9 @@ export default {
       }
 
       if (this.placeholder === "min") {
-        this.selectSkill[index] = skill[0].id;
+        this.selectSkill[index] = skill[0].level;
       } else {
-        this.selectSkill[index] = skill[skill.length - 1].id;
+        this.selectSkill[index] = skill[skill.length - 1].level;
       }
     }
 
@@ -96,7 +98,7 @@ export default {
       this.updateDevelop();
     },
     updateSkill(value) {
-      this.selectSkill[value.index] = value.id;
+      this.selectSkill[value.index] = value.level;
       this.skillLevel = value.level;
       this.updateDevelop();
     },

@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             StageMaterialTableSeeder::class,
             SkillTableSeeder::class,
             CharacterMaterialPromotionTableSeeder::class,
-            CharacterMaterialSkillTableSeeder::class,
+            CommonSkillSeeder::class,
+            SpeciallySkillSeeder::class,
         ]);
     }
 }

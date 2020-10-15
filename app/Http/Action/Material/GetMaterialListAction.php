@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Query\QueryLevel;
 use App\Query\QueryMaterial;
 use App\Model\Material\Develop;
+use App\Model\Material\Material;
 
 class GetMaterialListAction
 {
@@ -37,17 +38,53 @@ class GetMaterialListAction
                 $develop['goal']['skill'],
             );
 
+            $materialList = [];
+            // TODO: もっといい方法に修正したい
             $level = $levelQueryService->find($now, $goal);
+            $ex = new Material(
+                    Material::EX_ID,
+                    Material::EX_ID,
+                    Material::EX_ID,
+                    $level['experience'],
+            );
+            $mo = new Material(
+                    Material::MO_ID,
+                    Material::MO_ID,
+                    Material::MO_ID,
+                    $level['money'],
+            );
+
+            $materialList = [$ex->toArray(), $mo->toArray()];
             $promotionMaterial = $materialQueryService->findPromotion($characterId, $now, $goal);
             $skillMaterial = $materialQueryService->findSkill($characterId, $now, $goal);
 
+            $result = $this->mergeMaterials(array_merge($materialList, $promotionMaterial, $skillMaterial));
+
             return response()->json(
-                [
-                    'level' => $level,
-                    'promotion' => $promotionMaterial,
-                    'skill' => $skillMaterial
-                ]
+                array_map(
+                    function($e) { return $e->toArray(); },
+                    $result
+                )
             );
         }
+    }
+
+    // 各素材の合計値を出す
+    private function mergeMaterials($materialList): array {
+        $array = [];
+        foreach($materialList as $material) {
+            if (isset($array[$material['id']])) {
+                $array[$material['id']]->addMaterialNumber($material['required']);
+            } else {
+                $array[$material['id']] = new Material(
+                    $material['id'],
+                    $material['name'],
+                    $material['img'],
+                    $material['required'],
+                );
+            }
+        }
+
+        return array_values($array);
     }
 }

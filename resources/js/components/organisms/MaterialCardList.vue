@@ -9,9 +9,9 @@
         outlined
       >
         <v-container>
-          <v-card-text>
-            <v-row justify="space-between">
-              <p>{{ material.name }}</p>
+          <v-card-text class="material-header">
+            <v-row dense justify="space-between">
+              <p class="material-title">{{ material.name }}</p>
               <v-btn
                 icon
                 small
@@ -23,17 +23,16 @@
           </v-card-text>
 
           <v-img
-            :src="material.src"
-            class="white--text align-end"
+            :src="material.img"
+            class="material-img"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="100px"
+            height="80px"
+            width="80px"
           >
 
           </v-img>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
+          <v-card-actions class="material-actions">
             <v-btn
               icon
               @click="materialIncrement(index)"
@@ -44,6 +43,7 @@
             <v-text-field
               v-model="material.required"
               type="number"
+              class="material-input"
             ></v-text-field>
 
             <v-btn

@@ -1,20 +1,7 @@
 import Axios from "axios";
 
 const state = {
-    materials: [
-        {
-            id: 1,
-            name: "stone",
-            img: "",
-            required: 7000
-        },
-        {
-            id: 2,
-            name: "suger",
-            img: "",
-            required: 12
-        }
-    ]
+    materials: []
 };
 
 const mutations = {
