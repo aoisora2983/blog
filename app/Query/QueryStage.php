@@ -5,13 +5,10 @@ namespace App\Query;
 
 use DB;
 use App\Eloquent\Material;
-use App\Eloquent\Skill;
-use App\Eloquent\CharacterMaterialPromotion;
-use App\Eloquent\CommonSkill;
-use App\Eloquent\SpeciallySkill;
-use App\Model\Material\Develop;
+use App\Eloquent\Stage;
+use App\Eloquent\StageMaterial;
 
-class QueryMaterial {
+class QueryStage {
 	const COMMON_SKILL_MAX_LEVEL = 7;
 
 	public function findPromotion(int $characterId, Develop $now, Develop $goal): ?array {
@@ -116,7 +113,7 @@ class QueryMaterial {
 		return $result;
 	}
 
-	private function getMinLevel(array $levels): int {
+	private function getMinLevel(array $levels) {
 		$minLevel = 1;
 		foreach ($levels as $level) {
 			if (!$level) {
@@ -127,7 +124,7 @@ class QueryMaterial {
 		return $minLevel;
 	}
 
-	private function getMaxLevel(array $levels): int {
+	private function getMaxLevel(array $levels) {
 		$maxLevel = 1;
 		foreach ($levels as $level) {
 			if (!$level) {
@@ -136,24 +133,5 @@ class QueryMaterial {
 			$maxLevel = max($level, $maxLevel);
 		}
 		return $maxLevel;
-	}
-
-	// 最高効率の素材IDとステージを取得
-	public function getEfficientMaterial(int $materialId): ?array {
-		// SELECT (tsm.drop_number * tsm.chance / 10) FROM tbl_stage_material tsm JOIN mst_stage ms ON ms.id = tsm.material_id WHERE tsm.material_id = 1 GROUP BY tsm.stage_id ;
-
-		// 下位素材リストを作成
-		$array = [];
-		$query = Material::select(
-			'child_material_id1',
-			'child_required_number1',
-			'child_material_id2',
-			'child_required_number2',
-			'child_material_id3',
-			'child_required_number3',
-		);
-		$query->where('id', '=', $materialId);
-
-		return null;
 	}
 }

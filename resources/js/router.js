@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 // コンポーネントをインポート
 import index from "./components/pages/Index.vue";
 import simulator from "./components/pages/DevelopSimulator.vue";
+// import tagSimulator from "./components/pages/OpenTagSimulator.vue";
 
 export default new VueRouter({
     // モードの設定

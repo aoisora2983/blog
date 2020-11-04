@@ -27,6 +27,7 @@
           block
           color="primary"
           dark
+          @click="simulateStage"
         >Simulate Stage</v-btn>
 
       </div>
@@ -94,6 +95,10 @@ export default {
       this.getMaterial(this.developList);
 
       // ステージ取得
+      this.getStage(this.materialList);
+    },
+
+    simulateStage: function() {
       this.getStage(this.materialList);
     },
   },
